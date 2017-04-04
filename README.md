@@ -1,2 +1,2 @@
-# bpj02
-JSF - JPA Sample project
+# Campus02 - BPJ02 Repository
+Sample project

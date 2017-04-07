@@ -10,3 +10,8 @@ The project was built using
 
 A great resource for JSF is
 * [JSF at work](http://jsfatwork.irian.at/book_de/introduction.html)
+
+
+Environment
+
+* [Apache Tomcat 8.0](https://tomcat.apache.org/download-80.cgi)

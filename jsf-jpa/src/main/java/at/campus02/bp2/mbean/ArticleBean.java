@@ -3,6 +3,8 @@ package at.campus02.bp2.mbean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -11,18 +13,28 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import at.campus02.bp2.model.Article;
-import at.campus02.bp2.utils.EntityManagerProvider;
+import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean
 @SessionScoped
 public class ArticleBean {
 
-	private EntityManager entityManager = EntityManagerProvider.get();
+	private EntityManager entityManager;
 
 	private Article newArticle = new Article();
 	private List<Article> articleList = new ArrayList<Article>();
 	
 	public ArticleBean(){
+	}
+
+	@PostConstruct
+	public void createEntityManager() {
+		entityManager = EntityManagerFactoryProvider.get().createEntityManager();
+	}
+
+	@PreDestroy
+	public void closeEntityManager() {
+		entityManager.close();
 	}
 	
 	public void loadArticlesFromDB() {

@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+	<ui:define name="header">
+		Mehr verkaufen
+	</ui:define>
+	
+	<p:fieldset legend="Person anlegen" style="margin-bottom:20px">
+		<h:outputLabel>Vorname:</h:outputLabel>
+		<p:inputText label="Vorname" value="${personBean.newPerson.vorname}"/>
+		<h:outputLabel>Nachname:</h:outputLabel>
+		<p:inputText label="Nachname" value="${personBean.newPerson.nachname}"/>
+		<h:outputLabel>Telefon:</h:outputLabel>
+		<p:inputText label="Telefon" value="${personBean.newPerson.telefonnummer}"/>
+		<h:outputLabel>Mobiltelefon:</h:outputLabel>
+		<p:inputText label="Mobiltelefon" value="${personBean.newPerson.mobiltelefonnummer}"/>
+		<h:outputLabel>Email:</h:outputLabel>
+		<p:inputText label="Email" value="${personBean.newPerson.emailadresse}"/>
+		<p:commandButton value="Speichern" actionListener="${personBean.save}" update="messages,personenListe" />
+	</p:fieldset>
+
+	<p:dataTable id="personenListe" value="#{personBean.personenListe}" var="person">
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Nachname"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{person.nachname}"></h:outputText>
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Vorname"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{person.vorname}"></h:outputText>
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Email-Adresse"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{person.emailadresse}"></h:outputText>
+		</p:column>
+	</p:dataTable>
+	
+</ui:composition>

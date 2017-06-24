@@ -13,6 +13,9 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
+
 import at.campus02.bp2.model.Article;
 import at.campus02.bp2.model.Person;
 import at.campus02.bp2.utils.EntityManagerFactoryProvider;
@@ -72,13 +75,27 @@ public class PersonBean implements Serializable {
     	this.selectedPerson = selectedPerson;
     }
     public void deletePerson() {
-      
+    	
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.remove(selectedPerson);
 		transaction.commit();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person " + selectedPerson.getName() + " wurde gelöscht"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person wurde gespeichert"));
         selectedPerson = null;
     }
+    public void onRowEdit(RowEditEvent event) {
+       
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.merge(selectedPerson);
+		transaction.commit();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person wurde gespeichert"));
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
 
 }

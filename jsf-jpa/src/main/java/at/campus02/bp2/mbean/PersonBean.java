@@ -1,5 +1,6 @@
 package at.campus02.bp2.mbean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,13 @@ import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean
 @SessionScoped
-public class PersonBean {
+public class PersonBean implements Serializable {
 
 	private EntityManager entityManager;
 
 	private Person newPerson = new Person();
 	private List<Person> personenListe = new ArrayList<Person>();
-	
+	private Person selectedPerson;
 	public PersonBean(){
 	}
 
@@ -64,4 +65,20 @@ public class PersonBean {
 	public void setNewPerson(Person newPerson) {
 		this.newPerson = newPerson;
 	}
+    public Person getSelectedPerson() {
+        return selectedPerson;
+    }
+    public void setSelectedPerson(Person selectedPerson){
+    	this.selectedPerson = selectedPerson;
+    }
+    public void deletePerson() {
+      
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.remove(selectedPerson);
+		transaction.commit();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person " + selectedPerson.getName() + " wurde gelöscht"));
+        selectedPerson = null;
+    }
+
 }

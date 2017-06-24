@@ -23,7 +23,13 @@
 		<p:commandButton value="Speichern" actionListener="${personBean.save}" update="messages,personenListe" />
 	</p:fieldset>
 
-	<p:dataTable id="personenListe" value="#{personBean.personenListe}" var="person">
+	<p:dataTable id="personenListe" value="#{personBean.personenListe}" var="person" rowKey="#{person.id}" selection="#{personBean.selectedPerson}" selectionMode="single">
+			<p:column>
+			<f:facet name="header">
+				<h:outputText value="ID"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{person.id}"></h:outputText>
+		</p:column>
 		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Nachname"></h:outputText>
@@ -43,5 +49,9 @@
 			<h:outputText value="#{person.emailadresse}"></h:outputText>
 		</p:column>
 	</p:dataTable>
+	
+	 <p:contextMenu for="personenListe">
+        <p:menuitem value="Delete" update="personenListe" icon="ui-icon-close" actionListener="#{personBean.deletePerson}"/>
+    </p:contextMenu>
 	
 </ui:composition>

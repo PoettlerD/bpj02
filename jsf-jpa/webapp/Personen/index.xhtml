@@ -29,7 +29,7 @@
 	<p:dataTable id="personenListe" value="#{personBean.personenListe}"
 		var="person" rowKey="#{person.id}"
 		selection="#{personBean.selectedPerson}" selectionMode="single"
-		editable="true" filteredValue="#{personBean.filteredPersons}" widgetVar="personList">
+		editable="true"  widgetVar="personList">
 		
 		<p:ajax event="rowEdit" listener="#{personBean.onRowEdit}" />
 		<p:ajax event="rowEditCancel" listener="#{personBean.onRowCancel}" />
@@ -89,6 +89,7 @@
 	<p:contextMenu for="personenListe">
 		<p:menuitem value="Delete" update="personenListe" icon="ui-icon-close"
 			actionListener="#{personBean.deletePerson}" />
+			
 	</p:contextMenu>
 
 </ui:composition>

@@ -28,6 +28,7 @@ public class PersonBean implements Serializable {
 
 	private Person newPerson = new Person();
 	private List<Person> personenListe = new ArrayList<Person>();
+	private List<Person> filteredPersons = new ArrayList<Person>();
 	private Person selectedPerson;
 	public PersonBean(){
 	}
@@ -92,11 +93,15 @@ public class PersonBean implements Serializable {
 		transaction.commit();
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person wurde gespeichert"));
     }
-     
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    public List<Person> getFilteredPersons() {
+    	return filteredPersons;
+    } 
+    public void setFilteredPersons(List<Person> filteredPersons) {
+    	this.filteredPersons = filteredPersons;
+ 	}
 
 }

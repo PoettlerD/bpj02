@@ -16,20 +16,22 @@ import javax.persistence.EntityTransaction;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 
+import at.campus02.bp2.model.Ansprechpartner;
 import at.campus02.bp2.model.Article;
+import at.campus02.bp2.model.Kunde;
 import at.campus02.bp2.model.Person;
 import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean
 @SessionScoped
-public class PersonBean implements Serializable {
+public class KundeBean implements Serializable {
 
 	private EntityManager entityManager;
 
-	private Person newPerson = new Person();
-	private List<Person> personenListe = new ArrayList<Person>();
-	private Person selectedPerson;
-	public PersonBean(){
+	private Kunde newKunde = new Kunde();
+	private List<Kunde> kundeListe = new ArrayList<Kunde>();
+	private Kunde selectedKunde;
+	public KundeBean(){
 	}
 
 	@PostConstruct
@@ -42,55 +44,56 @@ public class PersonBean implements Serializable {
 		entityManager.close();
 	}
 	
-	public void loadPersonenFromDB() {
-		personenListe = entityManager.createQuery("from Person", Person.class).getResultList();
+	public void loadKundenFromDB() {
+		kundeListe = entityManager.createQuery("from Kunde", Kunde.class).getResultList();
 	}
 	
 	public void save() {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
-		entityManager.merge(newPerson);
+		entityManager.merge(newKunde);
 		transaction.commit();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person " + newPerson.getName() + " wurde gespeichert"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Kunde " + newKunde.getKundenname() + " wurde gespeichert"));
 	}
 
-	public List<Person> getPersonenListe() {
-		loadPersonenFromDB();
-		return personenListe;
+	public List<Kunde> getKundenListe() {
+		loadKundenFromDB();
+		return kundeListe;
 	}
-	public void setPersonenListe(List<Person> personenListe) {
-		this.personenListe = personenListe;
+	public void setKundenListe(List<Kunde> kundeListe) {
+		this.kundeListe = kundeListe;
 	}
 
-	public Person getNewPerson() {
-		return newPerson;
+	public Kunde getNewKunde() {
+		return newKunde;
 	}
-	public void setNewPerson(Person newPerson) {
-		this.newPerson = newPerson;
+	public void setNewKunde(Kunde newKunde) {
+		this.newKunde = newKunde;
 	}
-    public Person getSelectedPerson() {
-        return selectedPerson;
+    public Kunde getSelectedKunde() {
+        return selectedKunde;
     }
-    public void setSelectedPerson(Person selectedPerson){
-    	this.selectedPerson = selectedPerson;
+    public void setSelectedKunde(Kunde selectedKunde){
+    	this.selectedKunde = selectedKunde;
     }
-    public void deletePerson() {
+    public void deleteKunde() {
     	
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
-		entityManager.remove(selectedPerson);
+		entityManager.remove(selectedKunde);
 		transaction.commit();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person wurde gelöscht"));
-        selectedPerson = null;
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Kunde wurde gelöscht"));
+        selectedKunde = null;
     }
     
     public void onRowEdit(RowEditEvent event) {
        
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
-		entityManager.merge(selectedPerson);
+		entityManager.merge(selectedKunde);
+		entityManager.merge(selectedKunde.getPerson());
 		transaction.commit();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person wurde gespeichert"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Kunde wurde gespeichert"));
     }
      
     public void onRowCancel(RowEditEvent event) {

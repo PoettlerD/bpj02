@@ -19,6 +19,10 @@ import javax.persistence.Table;
 public class Ansprechpartner implements Serializable {
 
 	private static final long serialVersionUID = -4721951242117090563L;
+	
+	public Ansprechpartner(){
+		person = new Person();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

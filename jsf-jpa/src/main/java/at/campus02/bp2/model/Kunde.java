@@ -46,4 +46,17 @@ public class Kunde implements Serializable { //Ich würde die Klassen in der Einz
 	public void setKundenname(String kundenname){
 		this.kundenname = kundenname;
 	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null)
+			return false;
+		if(getClass() != obj.getClass())
+			return false;
+		final Kunde other = (Kunde) obj;
+		if(this.getId() != other.getId() && (this.getId() != null || !this.getId().equals(other.getId()))){
+			return false;
+		}
+		return true;
+	}
 }

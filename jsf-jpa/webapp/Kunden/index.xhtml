@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="header">
+		Mehr verkaufen
+	</ui:define>
+
+	<p:fieldset legend="Kunden anlegen" style="margin-bottom:20px">
+		<h:outputLabel>Vorname:</h:outputLabel>
+		<p:inputText label="Kundenname" value="${kundeBean.newKunde.kundenname}" />
+		<p:commandButton value="Speichern" actionListener="${kundeBean.save}"
+			update="messages,kundenListe" />
+	</p:fieldset>
+
+	<p:dataTable id="kundenListe" value="#{kundeBean.kundenListe}"
+		var="kunde" rowKey="#{kunde.id}"
+		selection="#{kundeBean.selectedKunde}" selectionMode="single"
+		editable="true">
+		<p:ajax event="rowEdit" listener="#{kundeBean.onRowEdit}" />
+		<p:ajax event="rowEditCancel" listener="#{kundeBean.onRowCancel}" />
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="ID"></h:outputText>
+			</f:facet>
+						<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{kunde.id}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{kunde.id}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Kundenname"></h:outputText>
+			</f:facet>
+						<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{kunde.kundenname}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{kunde.kundenname}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+		<p:column style="width:32px">
+			<p:rowEditor />
+		</p:column>
+
+	</p:dataTable>
+
+	<p:contextMenu for="kundenListe">
+		<p:menuitem value="Delete" update="kundenListe" icon="ui-icon-close"
+			actionListener="#{kundeBean.deleteKunde}" />
+	</p:contextMenu>
+	
+	<p:fieldset legend="Ansprechpartner anlegen" style="margin-bottom:20px">
+		<h:outputLabel>Vorname:</h:outputLabel>
+		<p:inputText label="Vorname" value="${ansprechpartnerBean.newAnsprechpartner.person.vorname}" />
+		<h:outputLabel>Nachname:</h:outputLabel>
+		<p:inputText label="Nachname" value="${ansprechpartnerBean.newAnsprechpartner.person.nachname}" />
+		<h:outputLabel>Telefon:</h:outputLabel>
+		<p:inputText label="Telefon"
+			value="${ansprechpartnerBean.newAnsprechpartner.person.telefonnummer}" />
+		<h:outputLabel>Mobiltelefon:</h:outputLabel>
+		<p:inputText label="Mobiltelefon"
+			value="${ansprechpartnerBean.newAnsprechpartner.person.mobiltelefonnummer}" />
+		<h:outputLabel>Email:</h:outputLabel>
+		<p:inputText label="Email"
+			value="${ansprechpartnerBean.newAnsprechpartner.person.emailadresse}" />
+		<h:outputLabel>Zuständigkeit:</h:outputLabel>
+		<p:inputText label="Email"
+			value="${ansprechpartnerBean.newAnsprechpartner.zustaendigkeit}" />
+		<h:outputLabel>Kunde:</h:outputLabel>
+		<p:selectOneMenu value="#{ansprechpartnerBean.newAnsprechpartner.kunde}">
+			<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}"/>
+		</p:selectOneMenu>
+		<p:commandButton value="Speichern" actionListener="${ansprechpartnerBean.save}"
+			update="messages,ansprechpartnerListe" />
+	</p:fieldset>
+
+	<p:dataTable id="ansprechpartnerListe" value="#{ansprechpartnerBean.ansprechpartnerListe}"
+		var="ansprechpartner" rowKey="#{ansprechpartner.id}"
+		selection="#{ansprechpartnerBean.selectedAnsprechpartner}" selectionMode="single"
+		editable="true">
+		<p:ajax event="rowEdit" listener="#{ansprechpartnerBean.onRowEdit}" />
+		<p:ajax event="rowEditCancel" listener="#{ansprechpartnerBean.onRowCancel}" />
+
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Nachname"></h:outputText>
+			</f:facet>
+						<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{ansprechpartner.person.nachname}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{ansprechpartner.person.nachname}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Vorname"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{ansprechpartner.person.vorname}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{ansprechpartner.person.vorname}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Email-Adresse"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{ansprechpartner.person.emailadresse}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{ansprechpartner.person.emailadresse}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+		<p:column style="width:32px">
+			<p:rowEditor />
+		</p:column>
+
+	</p:dataTable>
+
+	<p:contextMenu for="ansprechpartnerListe">
+		<p:menuitem value="Delete" update="ansprechpartnerListe" icon="ui-icon-close"
+			actionListener="#{ansprechpartnerBean.deleteAnsprechpartner}" />
+	</p:contextMenu>
+
+</ui:composition>

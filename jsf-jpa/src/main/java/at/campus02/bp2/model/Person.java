@@ -93,5 +93,28 @@ public class Person implements Serializable {
 	public void setEmailadresse(String emailadresse) {
 		this.emailadresse = emailadresse;
 	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null)
+			return false;
+		if(getClass() != obj.getClass())
+			return false;
+		final Person other = (Person) obj;
+		if(this.getId() == other.getId())
+			return true;
+		if(this.getId() == null && other.getId() == null)
+			return true;
+		if(this.getId() == null || other.getId() == null)
+			return false;
+		if(this.getId().longValue() == other.getId().longValue())
+			return true;
+		if(this.getId().equals(other.getId()))
+			return true;
+		if(this.getId() != other.getId() && (this.getId() != null || !this.getId().equals(other.getId()))){
+			return false;
+		}
+		return true;
+	}
 
 }

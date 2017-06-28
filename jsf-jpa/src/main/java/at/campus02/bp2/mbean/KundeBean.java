@@ -24,7 +24,7 @@ import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean
 @SessionScoped
-public class KundeBean implements Serializable {
+public class KundeBean {
 
 	private EntityManager entityManager;
 
@@ -91,7 +91,6 @@ public class KundeBean implements Serializable {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		entityManager.merge(selectedKunde);
-		entityManager.merge(selectedKunde.getPerson());
 		transaction.commit();
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Kunde wurde gespeichert"));
     }

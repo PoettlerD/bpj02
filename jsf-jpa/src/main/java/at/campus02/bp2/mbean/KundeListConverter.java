@@ -25,6 +25,8 @@ public class KundeListConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    	System.out.println("########### KundeListConverter.getAsObject ############");
+    	System.out.println("value");
         if (value.isEmpty()) {
             return null;
         }
@@ -35,10 +37,12 @@ public class KundeListConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+    	System.out.println("########### KundeListConverter.getAsString ############");
         if (value == null || value.toString().isEmpty()) {
             return "";
         }
         Long id = ((Kunde) value).getId();
+        System.out.println(id.toString());
         return id.toString();
     }
 }

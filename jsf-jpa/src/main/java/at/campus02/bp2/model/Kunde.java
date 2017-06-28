@@ -47,6 +47,14 @@ public class Kunde implements Serializable { //Ich würde die Klassen in der Einz
 		this.kundenname = kundenname;
 	}
 	
+	public Set<Ansprechpartner> getAnsprechpartner(){
+		return this.ansprechpartner;
+	}
+	
+	public void setAnsprechpartner(Set<Ansprechpartner> ansprechpartner){
+		this.ansprechpartner = ansprechpartner;
+	}
+	
 	@Override
 	public boolean equals(Object obj){
 		if(obj == null)
@@ -54,6 +62,16 @@ public class Kunde implements Serializable { //Ich würde die Klassen in der Einz
 		if(getClass() != obj.getClass())
 			return false;
 		final Kunde other = (Kunde) obj;
+		if(this.getId() == null && other.getId() == null)
+			return true;
+		if(this.getId() == null || other.getId() == null)
+			return false;
+		if(this.getId() == other.getId())
+			return true;
+		if(this.getId().longValue() == other.getId().longValue())
+			return true;
+		if(this.getId().equals(other.getId()))
+			return true;
 		if(this.getId() != other.getId() && (this.getId() != null || !this.getId().equals(other.getId()))){
 			return false;
 		}

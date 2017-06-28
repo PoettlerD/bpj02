@@ -16,9 +16,12 @@
 		<h:outputLabel>Zuständigkeit:</h:outputLabel>
 		<p:inputText label="Email"
 			value="${ansprechpartnerBean.newAnsprechpartner.zustaendigkeit}" />
+		<h:outputLabel>Weisungsbefugt:</h:outputLabel>
+		<p:selectBooleanCheckbox label="Weisungsbefugt"
+			value="${ansprechpartnerBean.newAnsprechpartner.istWeisungsbefugt}" />
 		<h:outputLabel>Kunde:</h:outputLabel>
 		<p:selectOneMenu value="#{ansprechpartnerBean.newAnsprechpartner.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
-			<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
+			<f:selectItems value="#{ansprechpartnerBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
 		</p:selectOneMenu>
 		<p:commandButton value="Speichern" actionListener="${ansprechpartnerBean.save}"
 			update="messages,ansprechpartnerListe" />
@@ -31,12 +34,26 @@
 		<p:ajax event="rowEdit" listener="#{ansprechpartnerBean.onRowEdit}" />
 		<p:ajax event="rowEditCancel" listener="#{ansprechpartnerBean.onRowCancel}" />
 
-
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Kunde"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{ansprechpartner.kunde.kundenname}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:selectOneMenu value="#{ansprechpartner.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
+						<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
+					</p:selectOneMenu>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
 		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Nachname"></h:outputText>
 			</f:facet>
-						<p:cellEditor>
+			<p:cellEditor>
 				<f:facet name="output">
 					<h:outputText value="#{ansprechpartner.person.nachname}"></h:outputText>
 				</f:facet>

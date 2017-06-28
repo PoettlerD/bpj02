@@ -1,6 +1,5 @@
 package at.campus02.bp2.mbean;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean
 @SessionScoped
-public class AnsprechpartnerBean implements Serializable {
+public class AnsprechpartnerBean {
 
 	private EntityManager entityManager;
 
@@ -112,6 +111,5 @@ public class AnsprechpartnerBean implements Serializable {
         FacesMessage msg = new FacesMessage("Edit Cancelled");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
 
 }

@@ -92,7 +92,7 @@ public void deleteStandort() {
 		transaction.begin();
 		entityManager.remove(selectedStandort);
 		transaction.commit();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Standort wurde gelöscht"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Standort wurde gelöscht"));
         selectedStandort = null;
     }
     

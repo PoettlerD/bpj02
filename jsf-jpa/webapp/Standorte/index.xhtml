@@ -19,8 +19,8 @@
         </ul>     
 	
 	<p:fieldset legend="Standort anlegen" style="margin-bottom:20px">
-		<p:selectOneMenu value="#{ansprechpartnerBean.newAnsprechpartner.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
-			<f:selectItems value="#{ansprechpartnerBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
+		<p:selectOneMenu value="#{standortBean.newStandort.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
+			<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
 		</p:selectOneMenu>
 		<h:outputLabel>Standorttyp:</h:outputLabel>
 		<p:inputText label="Standorttyp" value="${standortBean.newStandort.standorttyp}"/>
@@ -44,7 +44,10 @@
 			</f:facet>
 			<p:cellEditor>
 			<f:facet name="output">
-			<h:outputText value="#{standortListe.adresse}"></h:outputText>
+			<h:outputText value="#{standort.kunde.kundenname}"></h:outputText>
+			</f:facet>
+			<f:facet name="input">
+			<h:outputText value="#{standort.kunde.kundenname}"></h:outputText>
 			</f:facet>
 			</p:cellEditor>
 		</p:column>

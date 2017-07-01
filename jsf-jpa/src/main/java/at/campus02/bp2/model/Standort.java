@@ -18,13 +18,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Standorte")
 public class Standort implements Serializable {
-	
-	
-	
+		
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3892830040538716104L;
+	private static final long serialVersionUID = 6535422812028223012L;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
@@ -52,6 +51,16 @@ public class Standort implements Serializable {
 
 	@Column(name="Land")
 	private String land;
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Kunde getKunde() {
 		return kunde;

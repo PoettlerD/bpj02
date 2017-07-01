@@ -26,7 +26,7 @@ import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean
 @SessionScoped
-public class StandortBean implements Serializable {
+public class StandortBean{
 	
 	private EntityManager entityManager;
 

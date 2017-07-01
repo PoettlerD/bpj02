@@ -1,9 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/template.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
                 
 	<ui:define name="header">
 		Mehr verkaufen
@@ -37,7 +37,14 @@
 		<p:commandButton value="Speichern" actionListener="${standortBean.save}" update="messages,standortListe" />
 	</p:fieldset>
 
-	<p:dataTable id="standortListe" value="#{standortBean.standortListe}" var="standort">
+		<p:dataTable id="standortListe" value="#{standortBean.standortListe}"
+		var="standort" rowKey="#{standort.id}"
+		selection="#{standortBean.selectedStandort}" selectionMode="single"
+		editable="true">
+		
+		<p:ajax event="rowEdit" listener="#{standortBean.onRowEdit}" />
+		<p:ajax event="rowEditCancel" listener="#{standortBean.onRowCancel}" />
+		
 		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Kunde"></h:outputText>
@@ -47,57 +54,105 @@
 			<h:outputText value="#{standort.kunde.kundenname}"></h:outputText>
 			</f:facet>
 			<f:facet name="input">
-			<h:outputText value="#{standort.kunde.kundenname}"></h:outputText>
+			<p:inputText value="#{standort.kunde.kundenname}"></p:inputText>
 			</f:facet>
 			</p:cellEditor>
 		</p:column>
+		
 		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Standorttyp"></h:outputText>
 			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
 			<h:outputText value="#{standort.standorttyp}"></h:outputText>
+			</f:facet>
+			<f:facet name="input">
+			<p:inputText value="#{standort.standorttyp}"></p:inputText>
+			</f:facet>
+			</p:cellEditor>
 		</p:column>
+		
 		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Adresse"></h:outputText>
 			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
 			<h:outputText value="#{standort.adresse}"></h:outputText>
+			</f:facet>
+			<f:facet name="input">
+			<p:inputText value="#{standort.adresse}"></p:inputText>
+			</f:facet>
+			</p:cellEditor>
 		</p:column>
-				<p:column>
+		
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Nr./Stock/Tür"></h:outputText>
 			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
 			<h:outputText value="#{standort.detail}"></h:outputText>
+			</f:facet>
+			<f:facet name="input">
+			<p:inputText value="#{standort.detail}"></p:inputText>
+			</f:facet>
+			</p:cellEditor>
 		</p:column>
-				<p:column>
+		
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="PLZ"></h:outputText>
 			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
 			<h:outputText value="#{standort.plz}"></h:outputText>
+			</f:facet>
+			<f:facet name="input">
+			<p:inputText value="#{standort.plz}"></p:inputText>
+			</f:facet>
+			</p:cellEditor>
 		</p:column>
-				<p:column>
+		
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Ort"></h:outputText>
 			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
 			<h:outputText value="#{standort.ort}"></h:outputText>
+			</f:facet>
+			<f:facet name="input">
+			<p:inputText value="#{standort.ort}"></p:inputText>
+			</f:facet>
+			</p:cellEditor>
 		</p:column>
-				<p:column>
+		
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Land"></h:outputText>
 			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
 			<h:outputText value="#{standort.land}"></h:outputText>
+			</f:facet>
+			<f:facet name="input">
+			<p:inputText value="#{standort.land}"></p:inputText>
+			</f:facet>
+			</p:cellEditor>
 		</p:column>
 		
 		
 		<p:column style="width:32px">
 			<p:rowEditor />
 		</p:column>
+		</p:dataTable>
 	
 	
 		<p:contextMenu for="standortListe">
 		<p:menuitem value="Delete" update="standortListe" icon="ui-icon-close"
 			actionListener="#{standortBean.deleteStandort}" />
 		</p:contextMenu>
-	</p:dataTable>
 	
 </ui:composition>

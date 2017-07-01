@@ -10,28 +10,95 @@
 	</ui:define>
 	
 	<p:fieldset legend="Vertrag anlegen" style="margin-bottom:20px">
+		<h:outputLabel>Vertragsnummer:</h:outputLabel>
 		<p:inputText label="Vertragsnummer" value="${vertragBean.newVertrag.vertragsnummer}"/>
+		<h:outputLabel>Vertragsbeginn:</h:outputLabel>
 		<p:calendar label="Vertragsbeginn" value="${vertragBean.newVertrag.vertragsbeginn}"/>
+		<h:outputLabel>Vertragsende:</h:outputLabel>
 		<p:calendar  label="Vertragsende" value="${vertragBean.newVertrag.vertragsende}"/>
 		<p:selectOneMenu value="#{vertragBean.newVertrag.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
 			<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
 		</p:selectOneMenu>
-		<p:commandButton value="Speichern" actionListener="${vertragBean.save}" update="messages" />
+		<p:commandButton value="Speichern" actionListener="${vertragBean.save}" update="messages,vertragsListe" />
 	</p:fieldset>
 
 	<p:dataTable id="vertragsListe" value="#{vertragBean.vertragsListe}"
-	var="vertrag" rowKey="#{vertrag.id}">
-				<p:column>
+	var="vertrag" rowKey="#{vertrag.id}" selection="#{vertragBean.selectedVertrag}" 
+	selectionMode="single"
+		editable="true"  widgetVar="vertragsList">
+		
+				<p:ajax event="rowEdit" listener="#{vertragBean.onRowEdit}" />
+		<p:ajax event="rowEditCancel" listener="#{vertragBean.onRowCancel}" />
+		
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Vertragsnummer"></h:outputText>
 			</f:facet>
-			<h:outputText value="#{vertrag.id}"></h:outputText>
-
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{vertrag.vertragsnummer}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{vertrag.vertragsnummer}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
 			
 		</p:column>
-	
+		
+				<p:column>
+			<f:facet name="header">
+				<h:outputText value="Vertragsbeginn"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{vertrag.vertragsbeginn}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{vertrag.vertragsbeginn}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+						<p:column>
+			<f:facet name="header">
+				<h:outputText value="Vertragsende"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{vertrag.vertragsende}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{vertrag.vertragsende}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		<p:column>
+					<f:facet name="header">
+				<h:outputText value="Kunde"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{vertrag.kunde.kundenname}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+				<p:selectOneMenu value="#{vertrag.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
+					<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
+				</p:selectOneMenu>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+			<p:column style="width:32px">
+			<p:rowEditor />
+		</p:column>
 	
 	</p:dataTable>
-	
+		<p:contextMenu for="vertragsListe">
+		<p:menuitem value="Delete" update="vertragsListe" icon="ui-icon-close"
+			actionListener="#{vertragBean.deleteVertrag}" />
+			
+	</p:contextMenu>
 	
 </ui:composition>

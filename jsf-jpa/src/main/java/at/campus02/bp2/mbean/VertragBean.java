@@ -80,6 +80,10 @@ public class VertragBean implements Serializable {
 		kundeListe = entityManager.createQuery("from Kunde", Kunde.class).getResultList();
 	}
 	
+	public List<Kunde> getKundenListe() {
+		loadKundenFromDB();
+		return kundeListe;
+	}
 
 public void deleteVertrag() {
     	

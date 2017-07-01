@@ -44,13 +44,8 @@
 			</f:facet>
 			<p:cellEditor>
 			<f:facet name="output">
-			<h:outputText value="#{vertrag.kunde.kundenname}"></h:outputText>
+			<h:outputText value="#{standortListe.adresse}"></h:outputText>
 			</f:facet>
-				<f:facet name="input">
-				<p:selectOneMenu value="#{vertrag.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
-					<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
-				</p:selectOneMenu>
-				</f:facet>
 			</p:cellEditor>
 		</p:column>
 		<p:column>

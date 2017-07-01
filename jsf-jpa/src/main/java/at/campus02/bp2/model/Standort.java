@@ -41,7 +41,7 @@ public class Standort implements Serializable {
 	@Column(name="Adresse")
 	private String adresse;
 	
-	@Column(name="Nr./Stock/Tür")
+	@Column(name="Detail")
 	private String detail;
 	
 	@Column(name="PLZ")

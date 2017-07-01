@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+	<ui:define name="header">
+		Mehr verkaufen
+	</ui:define>
+	
+	<p:fieldset legend="Vertrag anlegen" style="margin-bottom:20px">
+		<p:inputText label="Vertragsnummer" value="${vertragBean.newVertrag.vertragsnummer}"/>
+		<p:calendar label="Vertragsbeginn" value="${vertragBean.newVertrag.vertragsbeginn}"/>
+		<p:calendar  label="Vertragsende" value="${vertragBean.newVertrag.vertragsende}"/>
+		<p:selectOneMenu value="#{vertragBean.newVertrag.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
+			<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
+		</p:selectOneMenu>
+		<p:commandButton value="Speichern" actionListener="${vertragBean.save}" update="messages" />
+	</p:fieldset>
+
+	<p:dataTable id="VertragsListe" value="#{vertragsBean.VertragsListe}"
+	var="vertrag" rowKey="#{vertrag.id}">
+	
+			<p:column>
+			<f:facet name="header">
+				<h:outputText value="ID"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{vertrag.id}"></h:outputText>
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{vertrag.id}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+	
+	
+	</p:dataTable>
+	
+	
+</ui:composition>

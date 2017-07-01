@@ -31,6 +31,9 @@ public class Kunde implements Serializable { //Ich würde die Klassen in der Einz
 	@OneToMany(mappedBy = "kunde")
 	private Set<Ansprechpartner> ansprechpartner;
 	
+	@OneToMany(mappedBy = "kunde")
+	private Set<Vertrag> vertrag;
+	
 	public Long getId() {
 		return id;
 	}
@@ -54,6 +57,15 @@ public class Kunde implements Serializable { //Ich würde die Klassen in der Einz
 	public void setAnsprechpartner(Set<Ansprechpartner> ansprechpartner){
 		this.ansprechpartner = ansprechpartner;
 	}
+	
+	public Set<Vertrag> getVertrag()
+	{
+		return this.vertrag;
+	}
+	public void setVertrag(Set<Vertrag> vertrag){
+		this.vertrag = vertrag;
+	}
+	
 	
 	@Override
 	public boolean equals(Object obj){

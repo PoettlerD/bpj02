@@ -19,21 +19,15 @@
 		<p:commandButton value="Speichern" actionListener="${vertragBean.save}" update="messages" />
 	</p:fieldset>
 
-	<p:dataTable id="VertragsListe" value="#{vertragsBean.VertragsListe}"
+	<p:dataTable id="vertragsListe" value="#{vertragBean.vertragsListe}"
 	var="vertrag" rowKey="#{vertrag.id}">
-	
-			<p:column>
+				<p:column>
 			<f:facet name="header">
-				<h:outputText value="ID"></h:outputText>
+				<h:outputText value="Vertragsnummer"></h:outputText>
 			</f:facet>
-			<p:cellEditor>
-				<f:facet name="output">
-					<h:outputText value="#{vertrag.id}"></h:outputText>
-				</f:facet>
-				<f:facet name="input">
-					<p:inputText value="#{vertrag.id}"></p:inputText>
-				</f:facet>
-			</p:cellEditor>
+			<h:outputText value="#{vertrag.id}"></h:outputText>
+
+			
 		</p:column>
 	
 	

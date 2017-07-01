@@ -45,7 +45,7 @@ public class VertragBean implements Serializable {
 	public void closeEntityManager() {
 		entityManager.close();
 	}
-	public void loadPersonenFromDB() {
+	public void loadVertraegeFromDB() {
 		vertragsListe = entityManager.createQuery("from Vertrag", Vertrag.class).getResultList();
 	}
 	
@@ -57,7 +57,7 @@ public class VertragBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Vertrag " + newVertrag.getVertragsnummer() + " wurde gespeichert"));
 	}
 	public List<Vertrag> getVertragsListe() {
-		loadPersonenFromDB();
+		loadVertraegeFromDB();
 		return vertragsListe;
 	}
 	public void setVertragsListe(List<Vertrag> vertragsListe) {
@@ -80,10 +80,7 @@ public class VertragBean implements Serializable {
 		kundeListe = entityManager.createQuery("from Kunde", Kunde.class).getResultList();
 	}
 	
-	public List<Kunde> getKundenListe() {
-		loadKundenFromDB();
-		return kundeListe;
-	}
+
 public void deleteVertrag() {
     	
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -109,7 +106,7 @@ public void deleteVertrag() {
     public List<Vertrag> getFilteredVertraege() {
     	return filteredVertraege;
     } 
-    public void setFilteredPersons(List<Vertrag> filteredVertraege) {
+    public void setFilteredVertraege(List<Vertrag> filteredVertraege) {
     	this.filteredVertraege = filteredVertraege;
  	}
 }

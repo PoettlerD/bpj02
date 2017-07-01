@@ -16,6 +16,7 @@
 		<p:calendar label="Vertragsbeginn" value="${vertragBean.newVertrag.vertragsbeginn}"/>
 		<h:outputLabel>Vertragsende:</h:outputLabel>
 		<p:calendar  label="Vertragsende" value="${vertragBean.newVertrag.vertragsende}"/>
+		<h:outputLabel>Kunde:</h:outputLabel>
 		<p:selectOneMenu value="#{vertragBean.newVertrag.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
 			<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
 		</p:selectOneMenu>
@@ -27,7 +28,7 @@
 	selectionMode="single"
 		editable="true"  widgetVar="vertragsList">
 		
-				<p:ajax event="rowEdit" listener="#{vertragBean.onRowEdit}" />
+		<p:ajax event="rowEdit" listener="#{vertragBean.onRowEdit}" />
 		<p:ajax event="rowEditCancel" listener="#{vertragBean.onRowCancel}" />
 		
 		<p:column>
@@ -101,4 +102,3 @@
 			
 	</p:contextMenu>
 	
-</ui:composition>

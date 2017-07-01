@@ -44,6 +44,9 @@ public class Vertrag implements Serializable {
 	@JoinColumn(name="KundeID", nullable=false)
 	private Kunde kunde;
 	
+	@OneToMany(mappedBy = "vertrag")
+	private Set<Feedback> feedback;
+	
 	public Long getId() {
 		return id;
 	}
@@ -81,6 +84,14 @@ public class Vertrag implements Serializable {
 	
 	public void setKunde(Kunde kunde){
 		this.kunde = kunde;
+	}
+	
+	public Set<Feedback> getFeedback()
+	{
+		return this.feedback;
+	}
+	public void setFeedback(Set<Feedback> feedback){
+		this.feedback = feedback;
 	}
 	
 	@Override

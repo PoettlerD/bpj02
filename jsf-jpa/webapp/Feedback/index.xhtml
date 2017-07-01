@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+	<ui:define name="header">
+		Mehr verkaufen
+	</ui:define>
+	
+		<p:fieldset legend="Feedback anlegen" style="margin-bottom:20px">
+		<h:outputLabel>Datum:</h:outputLabel>
+		<p:calendar label="Datim" value="${feedbackBean.newFeedback.datum}"/>
+		<h:outputLabel>Bewertung:</h:outputLabel>
+		<p:inputText label="Bewertung" value="${feedbackBean.newFeedback.bewertung}"/>
+		<h:outputLabel>Inhalt:</h:outputLabel>
+		<p:inputTextarea label="Inhalt" rows="10" cols="50" value="${feedbackBean.newFeedback.inhalt}"/>
+		<h:outputLabel>Vertrag:</h:outputLabel>
+		<p:selectOneMenu  value="#{feedbackBean.newFeedback.vertrag}" converter="at.campus02.bp2.mbean.VertragListConverter">
+			<f:selectItems value="#{vertragBean.vertragsListe}" var="vertrag" itemLabel="#{vertrag.vertragsnummer}" itemValue="#{vertrag}"/>
+		</p:selectOneMenu>
+		<p:commandButton value="Speichern" actionListener="${feedbackBean.save}" update="messages, feedbackListe" />
+	</p:fieldset>
+	
+	<p:dataTable id="feedbackListe" value="#{feedbackBean.feedbackListe}"
+	var="feedback" rowKey="#{feedback.id}" selection="#{feedbackBean.selectedFeedback}" 
+	selectionMode="single"
+		editable="true"  widgetVar="feedbackListe">
+		
+		<p:ajax event="rowEdit" listener="#{feedbackBean.onRowEdit}" />
+		<p:ajax event="rowEditCancel" listener="#{feedbackBean.onRowCancel}" />
+	
+	
+			<p:column>
+			<f:facet name="header">
+				<h:outputText value="Datum"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{feedback.datum}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{feedback.datum}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+					<p:column>
+			<f:facet name="header">
+				<h:outputText value="Bewertung"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{feedback.bewertung}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{feedback.bewertung}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+	
+				<p:column>
+			<f:facet name="header">
+				<h:outputText value="Inhalt"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{feedback.inhalt}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{feedback.inhalt}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+					<p:column>
+			<f:facet name="header">
+				<h:outputText value="Vertrag"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{feedback.vertrag.vertragsnummer}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{feedback.vertrag.vertragsnummer}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+	
+			
+			<p:column style="width:32px">
+			<p:rowEditor />
+		</p:column>
+	
+	</p:dataTable>
+		<p:contextMenu for="feedbackListe">
+		<p:menuitem value="Delete" update="feedbackListe" icon="ui-icon-close"
+			actionListener="#{feedbackBean.deleteFeedback}" />
+			
+	</p:contextMenu>
+	
+	
+	
+	
+	</ui:composition>

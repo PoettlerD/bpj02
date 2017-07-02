@@ -27,7 +27,7 @@
 	<p:dataTable id="kundenListe" value="#{kundeBean.kundenListe}"
 		var="kunde" rowKey="#{kunde.id}"
 		selection="#{kundeBean.selectedKunde}" selectionMode="single"
-		editable="true">
+		editable="true" update="messages,kundenListe">
 		<p:ajax event="rowEdit" listener="#{kundeBean.onRowEdit}" />
 		<p:ajax event="rowEditCancel" listener="#{kundeBean.onRowCancel}" />
 		<p:column>

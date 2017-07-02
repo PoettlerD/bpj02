@@ -21,6 +21,7 @@ import at.campus02.bp2.model.Article;
 import at.campus02.bp2.model.Kunde;
 import at.campus02.bp2.model.Person;
 import at.campus02.bp2.model.Vertrag;
+import at.campus02.bp2.model.Produkt;
 import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean

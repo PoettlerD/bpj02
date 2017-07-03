@@ -22,7 +22,7 @@ import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean
 @SessionScoped
-public class PersonBean implements Serializable {
+public class PersonBean {
 
 	private EntityManager entityManager;
 

@@ -26,7 +26,7 @@ import at.campus02.bp2.utils.EntityManagerFactoryProvider;
 
 @ManagedBean
 @SessionScoped
-public class ProduktBean implements Serializable {
+public class ProduktBean {
 	
 	private EntityManager entityManager;
 

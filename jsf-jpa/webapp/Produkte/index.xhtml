@@ -24,19 +24,19 @@
 		<h:outputLabel>Produkt:</h:outputLabel>
 		<p:inputText label="Produktname" value="${produktBean.newProdukt.produktname}"/>
 		<h:outputLabel>Beschreibung:</h:outputLabel>
-		<p:calendar label="Beschreibung" value="${produktBean.newProdukt.beschreibung}"/>
+		<p:inputText label="Beschreibung" value="${produktBean.newProdukt.beschreibung}"/>
 		<h:outputLabel>Preis:</h:outputLabel>
-		<p:calendar  label="Preis" value="${produktBean.newProdukt.preis}"/>
+		<p:inputText  label="Preis" value="${produktBean.newProdukt.preis}"/>
 		<h:outputLabel>Produkttyp:</h:outputLabel>
-		<p:calendar  label="Produkttyp" value="${produktBean.newProdukt.produkttyp}"/>
+		<p:inputText  label="Produkttyp" value="${produktBean.newProdukt.produkttyp}"/>
 		<h:outputLabel>Technologie:</h:outputLabel>
-		<p:calendar  label="Technologie" value="${produktBean.newProdukt.technologie}"/>
+		<p:inputText  label="Technologie" value="${produktBean.newProdukt.technologie}"/>
 		<h:outputLabel>Anzahl der Gespräche:</h:outputLabel>
-		<p:calendar  label="Anzahl der Gespräche" value="${produktBean.newProdukt.anzahlderGespraeche}"/>
+		<p:inputText  label="Anzahl der Gespräche" value="${produktBean.newProdukt.anzahlderGespraeche}"/>
 		<h:outputLabel>Bandbreite:</h:outputLabel>
-		<p:calendar  label="Bandbreite" value="${produktBean.newProdukt.bandbreite}"/>
+		<p:inputText  label="Bandbreite" value="${produktBean.newProdukt.bandbreite}"/>
 		<h:outputLabel>Leitungstyp:</h:outputLabel>
-		<p:calendar  label="Leitungstyp" value="${produktBean.newProdukt.leitungstyp}"/>
+		<p:inputText  label="Leitungstyp" value="${produktBean.newProdukt.leitungstyp}"/>
 		
 		<p:commandButton value="Speichern" actionListener="${produktBean.save}" update="messages,produktListe" />
 	</p:fieldset>
@@ -73,7 +73,7 @@
 			<h:outputText value="#{produkt.beschreibung}"></h:outputText>
 			</f:facet>
 				<f:facet name="input">
-					<p:calendar value="#{produkt.beschreibung}"></p:calendar>
+					<p:inputText value="#{produkt.beschreibung}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 			
@@ -88,7 +88,7 @@
 			<h:outputText value="#{produkt.preis}"></h:outputText>
 			</f:facet>
 				<f:facet name="input">
-					<p:calendar value="#{produkt.preis}"></p:calendar>
+					<p:inputText value="#{produkt.preis}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 			
@@ -103,7 +103,7 @@
 			<h:outputText value="#{produkt.produkttyp}"></h:outputText>
 			</f:facet>
 				<f:facet name="input">
-					<p:calendar value="#{produkt.produkttyp}"></p:calendar>
+					<p:inputText value="#{produkt.produkttyp}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 			
@@ -118,7 +118,7 @@
 			<h:outputText value="#{produkt.technologie}"></h:outputText>
 			</f:facet>
 				<f:facet name="input">
-					<p:calendar value="#{produkt.technologie}"></p:calendar>
+					<p:inputText value="#{produkt.technologie}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 			
@@ -133,7 +133,7 @@
 			<h:outputText value="#{produkt.anzahlderGespraeche}"></h:outputText>
 			</f:facet>
 				<f:facet name="input">
-					<p:calendar value="#{produkt.anzahlderGespraeche}"></p:calendar>
+					<p:inputText value="#{produkt.anzahlderGespraeche}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 			
@@ -148,7 +148,7 @@
 			<h:outputText value="#{produkt.bandbreite}"></h:outputText>
 			</f:facet>
 				<f:facet name="input">
-					<p:calendar value="#{produkt.bandbreite}"></p:calendar>
+					<p:inputText value="#{produkt.bandbreite}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 			
@@ -163,7 +163,7 @@
 			<h:outputText value="#{produkt.leitungstyp}"></h:outputText>
 			</f:facet>
 				<f:facet name="input">
-					<p:calendar value="#{produkt.leitungstyp}"></p:calendar>
+					<p:inputText value="#{produkt.leitungstyp}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 			

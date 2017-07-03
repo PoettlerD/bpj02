@@ -54,7 +54,7 @@ public class Produkt implements Serializable {
 		this.id = id;
 	}
 
-	public String getProduktnamee() {
+	public String getProduktname() {
 		return this.produktname;
 	}
 
@@ -109,4 +109,14 @@ public class Produkt implements Serializable {
 	public void setLeitungstyp(String leitungstyp) {
 		this.leitungstyp = leitungstyp;
 	}
+
+	public String getBeschreibung() {
+		return beschreibung;
+	}
+
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
+	}
+	
+	
 }

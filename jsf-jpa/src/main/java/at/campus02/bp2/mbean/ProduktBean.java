@@ -56,10 +56,8 @@ public class ProduktBean implements Serializable {
 		transaction.commit();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Das Produkt " + newProdukt.getProduktname() + " wurde gespeichert"));
 	}
-	public List<Produkt> getProduktListe() {
-		loadProdukteFromDB();
-		return produktListe;
-	}
+
+	
 	public void setProduktListe(List<Produkt> produktListe) {
 		this.produktListe = produktListe;
 	}
@@ -92,7 +90,7 @@ public void deleteProdukt() {
 		entityManager.remove(selectedProdukt);
 		transaction.commit();
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Das Produkt wurde gelöscht"));
-        selectedVertrag = null;
+        selectedProdukt = null;
     }
     
     public void onRowEdit(RowEditEvent event) {

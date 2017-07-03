@@ -21,27 +21,33 @@
 
 	<p:fieldset legend="Kundensegment anlegen" style="margin-bottom:20px">
 		<h:outputLabel>Segmentbezeichnung:</h:outputLabel>
-		<p:inputText label="Name" value="${kundensegmentBean.newKundensegment.Name}" />
+		<p:inputText label="Name" value="${kundensegmentBean.newKundensegment.name}" />
+		<h:outputLabel>Beschreibung:</h:outputLabel>
+		<p:inputText label="Beschreibung" value="${kundensegmentBean.newKundensegment.beschreibung}" />
 		<p:commandButton value="Speichern" actionListener="${kundensegmentBean.save}"
 			update="messages,kundensegmentListe" />
 	</p:fieldset>
 
-	<p:dataTable id="kundensegmentListe" value="#{kundensegmentBean.kundensegmentListe}"
-		var="Kundensegment" rowKey="#{Kundensegment.id}"
+		<p:dataTable id="kundensegmentListe" value="#{kundensegmentBean.kundensegmentListe}"
+		var="kundensegment" rowKey="#{kundensegment.id}"
 		selection="#{kundensegmentBean.selectedKundensegment}" selectionMode="single"
-		editable="true">
+		editable="true" widgetVar="kundensegmentListe">
+		
 		<p:ajax event="rowEdit" listener="#{kundensegmentBean.onRowEdit}" />
 		<p:ajax event="rowEditCancel" listener="#{kundensegmentBean.onRowCancel}" />
+		
+		
+		
 		<p:column>
 			<f:facet name="header">
 				<h:outputText value="ID"></h:outputText>
 			</f:facet>
 			<p:cellEditor>
 				<f:facet name="output">
-					<h:outputText value="#{Kundensegment.id}"></h:outputText>
+					<h:outputText value="#{kundensegment.id}"></h:outputText>
 				</f:facet>
 				<f:facet name="input">
-					<p:inputText value="#{Kundensegment.id}"></p:inputText>
+					<p:inputText value="#{kundensegment.id}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 		</p:column>
@@ -49,12 +55,12 @@
 			<f:facet name="header">
 				<h:outputText value="Name"></h:outputText>
 			</f:facet>
-						<p:cellEditor>
+			<p:cellEditor>
 				<f:facet name="output">
-					<h:outputText value="#{Kundensegment.Name}"></h:outputText>
+					<h:outputText value="#{kundensegment.name}"></h:outputText>
 				</f:facet>
 				<f:facet name="input">
-					<p:inputText value="#{Kundensegment.Name}"></p:inputText>
+					<p:inputText value="#{kundensegment.name}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 		</p:column>
@@ -67,10 +73,10 @@
 			</f:facet>
 			<p:cellEditor>
 				<f:facet name="output">
-					<h:outputText value="#{Kundensegment.Beschreibung}"></h:outputText>
+					<h:outputText value="#{kundensegment.beschreibung}"></h:outputText>
 				</f:facet>
 				<f:facet name="input">
-					<p:inputText value="#{Kundensegment.Beschreibung}"></p:inputText>
+					<p:inputText value="#{kundensegment.beschreibung}"></p:inputText>
 				</f:facet>
 			</p:cellEditor>
 		</p:column>

@@ -1,0 +1,182 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+                
+	<ui:define name="header">
+		Mehr verkaufen
+	</ui:define>
+	
+	    <ul style="list-style-type: none;">
+        <li style="float: left; padding: 10px;"><a href="/bp2/Kunden">Kunden</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Personen">Personen</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Ansprechpartner">Ansprechpartner</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Vertraege">Verträge</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Standorte">Standorte</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Produkte">Produkte</a></li>
+        <li style="float: none; padding: 10px;"><a href="/bp2/Feedback">Feedback</a></li>
+        </ul>      
+	
+	<p:fieldset legend="Produkt anlegen" style="margin-bottom:20px">
+		<h:outputLabel>Produkt:</h:outputLabel>
+		<p:inputText label="Produktname" value="${produktBean.newProdukt.produktname}"/>
+		<h:outputLabel>Beschreibung:</h:outputLabel>
+		<p:calendar label="Beschreibung" value="${produktBean.newProdukt.beschreibung}"/>
+		<h:outputLabel>Preis:</h:outputLabel>
+		<p:calendar  label="Preis" value="${produktBean.newProdukt.preis}"/>
+		<h:outputLabel>Produkttyp:</h:outputLabel>
+		<p:calendar  label="Produkttyp" value="${produktBean.newProdukt.produkttyp}"/>
+		<h:outputLabel>Technologie:</h:outputLabel>
+		<p:calendar  label="Technologie" value="${produktBean.newProdukt.technologie}"/>
+		<h:outputLabel>Anzahl der Gespräche:</h:outputLabel>
+		<p:calendar  label="Anzahl der Gespräche" value="${produktBean.newProdukt.anzahlderGespraeche}"/>
+		<h:outputLabel>Bandbreite:</h:outputLabel>
+		<p:calendar  label="Bandbreite" value="${produktBean.newProdukt.bandbreite}"/>
+		<h:outputLabel>Leitungstyp:</h:outputLabel>
+		<p:calendar  label="Leitungstyp" value="${produktBean.newProdukt.leitungstyp}"/>
+		
+		<p:commandButton value="Speichern" actionListener="${produktBean.save}" update="messages,produktListe" />
+	</p:fieldset>
+
+	<p:dataTable id="produktListe" value="#{produktBean.produktListe}"
+	var="produkt" rowKey="#{produkt.id}" selection="#{produktBean.selectedProdukt}" 
+	selectionMode="single"
+		editable="true"  widgetVar="produktList">
+		
+		<p:ajax event="rowEdit" listener="#{produktBean.onRowEdit}" />
+		<p:ajax event="rowEditCancel" listener="#{produktBean.onRowCancel}" />
+		
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Produkt"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{produkt.produktname}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{produkt.produktname}"></p:inputText>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+				<p:column>
+			<f:facet name="header">
+				<h:outputText value="Beschreibung"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{produkt.beschreibung}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{produkt.beschreibung}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Preis"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{produkt.preis}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{produkt.preis}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Produkttyp"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{produkt.produkttyp}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{produkt.produkttyp}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+				<p:column>
+			<f:facet name="header">
+				<h:outputText value="Technologie"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{produkt.technologie}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{produkt.technologie}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+				<p:column>
+			<f:facet name="header">
+				<h:outputText value="Anzahl der Gespräche"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{produkt.anzahlderGespraeche}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{produkt.anzahlderGespraeche}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+				<p:column>
+			<f:facet name="header">
+				<h:outputText value="Bandbreite"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{produkt.bandbreite}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{produkt.bandbreite}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+		
+				<p:column>
+			<f:facet name="header">
+				<h:outputText value="Leitungstyp"></h:outputText>
+			</f:facet>
+			<p:cellEditor>
+			<f:facet name="output">
+			<h:outputText value="#{produkt.leitungstyp}"></h:outputText>
+			</f:facet>
+				<f:facet name="input">
+					<p:calendar value="#{produkt.leitungstyp}"></p:calendar>
+				</f:facet>
+			</p:cellEditor>
+			
+		</p:column>
+
+			<p:column style="width:32px">
+			<p:rowEditor />
+		</p:column>
+	
+	</p:dataTable>
+		<p:contextMenu for="produktListe">
+		<p:menuitem value="Delete" update="produktListe" icon="ui-icon-close"
+			actionListener="#{produktBean.deleteProdukt}" />
+			
+	</p:contextMenu>
+	
+</ui:composition>

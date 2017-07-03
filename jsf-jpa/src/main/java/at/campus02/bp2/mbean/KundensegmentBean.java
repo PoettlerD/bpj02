@@ -71,13 +71,16 @@ public class KundensegmentBean {
 	public void setNewKundensegment(Kundensegment newKundensegment) {
 		this.newKundensegment = newKundensegment;
 	}
+
     public Kundensegment getSelectedKundensegment() {
-        return selectedKundensegment;
-    }
-    public void setSelectedKundenSegment(Kundensegment selectedKundensegment){
-    	this.selectedKundensegment = selectedKundensegment;
-    }
-    public void deleteKundensegment() {
+		return selectedKundensegment;
+	}
+
+	public void setSelectedKundensegment(Kundensegment selectedKundensegment) {
+		this.selectedKundensegment = selectedKundensegment;
+	}
+
+	public void deleteKundensegment() {
     	
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();

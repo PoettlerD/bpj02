@@ -37,7 +37,7 @@ public class Feedback implements Serializable {
 	private int bewertung;
 	
 	@Column(name="Inhalt")
-	private int Inhalt;
+	private String Inhalt;
 	
 	@ManyToOne
 	@JoinColumn(name="VertragID", nullable=false)
@@ -67,11 +67,11 @@ public class Feedback implements Serializable {
 		this.bewertung = bewertung;
 	}
 
-	public int getInhalt() {
+	public String getInhalt() {
 		return Inhalt;
 	}
 
-	public void setInhalt(int inhalt) {
+	public void setInhalt(String inhalt) {
 		Inhalt = inhalt;
 	}
 

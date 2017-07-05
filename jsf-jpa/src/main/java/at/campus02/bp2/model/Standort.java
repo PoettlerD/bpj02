@@ -118,9 +118,32 @@ public class Standort implements Serializable {
 		this.land = land;
 	}
 	
-
+	public String getName(){
+		return this.standorttyp + " " + this.adresse + ", " + this.plz + " " + this.ort;
+	}
 	
 	
-	
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null)
+			return false;
+		if(getClass() != obj.getClass())
+			return false;
+		final Standort other = (Standort) obj;
+		if(this.getId() == null && other.getId() == null)
+			return true;
+		if(this.getId() == null || other.getId() == null)
+			return false;
+		if(this.getId() == other.getId())
+			return true;
+		if(this.getId().longValue() == other.getId().longValue())
+			return true;
+		if(this.getId().equals(other.getId()))
+			return true;
+		if(this.getId() != other.getId() && (this.getId() != null || !this.getId().equals(other.getId()))){
+			return false;
+		}
+		return true;
+	}
 	
 }

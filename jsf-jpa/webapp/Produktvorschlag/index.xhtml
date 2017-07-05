@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="header">
+		Mehr verkaufen
+	</ui:define>
+
+	    <ul style="list-style-type: none;">
+	    <li style="float: left; padding: 10px;"><a href="/bp2/Kundensegmente">Kundensegmente</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Kunden">Kunden</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Personen">Personen</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Ansprechpartner">Ansprechpartner</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Vertraege">Verträge</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Standorte">Standorte</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Produkte">Produkte</a></li>
+        <li style="float: left; padding: 10px;"><a href="/bp2/Feedback">Feedback</a></li>
+        <li style="float: none; padding: 10px;"><a href="/bp2/Produktvorschlag">Produktvorschlag ermitteln</a></li>
+        </ul>           
+
+	<p:fieldset legend="Produktvorschlag ermitteln" style="margin-bottom:20px">
+		<h:outputLabel>Kunde:</h:outputLabel>
+		<p:selectOneMenu value="#{produktvorschlagBean.produktvorschlag.kunde}" converter="at.campus02.bp2.mbean.KundeListConverter">
+			<f:selectItems value="#{kundeBean.kundenListe}" var="kunde" itemLabel="#{kunde.kundenname}" itemValue="#{kunde}"/>
+			<p:ajax update="standortListe" event="change"/>
+		</p:selectOneMenu>
+		<h:outputLabel>Standort:</h:outputLabel>
+		<p:selectOneMenu value="#{produktvorschlagBean.produktvorschlag.standort}" converter="at.campus02.bp2.mbean.StandortListConverter" id="standortListe">
+			<f:selectItems value="#{produktvorschlagBean.produktvorschlag.kunde.standort}" var="standort" itemLabel="#{standort.name}" itemValue="#{standort}"/>
+		</p:selectOneMenu>
+		<h:outputLabel>Produkttyp:</h:outputLabel>
+		<p:selectOneMenu value="#{produktvorschlagBean.produktvorschlag.produkttyp}">
+			<f:selectItem itemValue="Telefonie" itemLabel="Telefonie"/>
+			<f:selectItem itemValue="Internet" itemLabel="Internet"/>
+			<f:selectItem itemValue="Kombiprodukt" itemLabel="Kombiprodukt"/>		
+		</p:selectOneMenu>
+		<p:commandButton value="Vorschläge ermitteln" actionListener="${produktvorschlagBean.load}"
+			update="messages, produktvorschlagListe" />
+	</p:fieldset>
+
+	<p:dataTable id="produktvorschlagListe" value="#{produktvorschlagBean.produktvorschlag.produkte}"
+		var="produkt" rowKey="#{produkt.id}"
+		selection="#{produktvorschlagBean.selectedProdukt}" selectionMode="single"
+		editable="false">
+		<!-- <p:ajax event="rowEdit" listener="#{ansprechpartnerBean.onRowEdit}" />
+		<p:ajax event="rowEditCancel" listener="#{ansprechpartnerBean.onRowCancel}" /> -->
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Bezeichnung"></h:outputText>
+			</f:facet>
+			#{produkt.produktname}
+		</p:column>
+	</p:dataTable>
+
+</ui:composition>

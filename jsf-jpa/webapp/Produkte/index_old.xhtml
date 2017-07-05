@@ -28,11 +28,7 @@
 		<h:outputLabel>Preis:</h:outputLabel>
 		<p:inputText  label="Preis" value="${produktBean.newProdukt.preis}"/>
 		<h:outputLabel>Produkttyp:</h:outputLabel>
-		<p:selectOneMenu value="#{produktBean.newProdukt.produkttyp}">
-			<f:selectItem itemValue="Telefonie" itemLabel="Telefonie"/>
-			<f:selectItem itemValue="Internet" itemLabel="Internet"/>
-			<f:selectItem itemValue="Kombiprodukt" itemLabel="Kombiprodukt"/>		
-		</p:selectOneMenu>
+		<p:inputText  label="Produkttyp" value="${produktBean.newProdukt.produkttyp}"/>
 		<h:outputLabel>Technologie:</h:outputLabel>
 		<p:inputText  label="Technologie" value="${produktBean.newProdukt.technologie}"/>
 		<h:outputLabel>Anzahl der Gespräche:</h:outputLabel>

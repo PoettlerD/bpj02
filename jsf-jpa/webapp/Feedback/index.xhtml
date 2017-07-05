@@ -22,14 +22,14 @@
 	</ui:define>
 	
 		<p:fieldset legend="Feedback anlegen" style="margin-bottom:20px">
-		<h:outputLabel>Datum:</h:outputLabel>
-		<p:calendar label="Datim" value="${feedbackBean.newFeedback.datum}"/>
+		<h:outputLabel>Datum:</h:outputLabel><br />
+		<p:calendar label="Datim" value="${feedbackBean.newFeedback.datum}"/><br />
 		<h:outputLabel>Bewertung:</h:outputLabel>
-		<p:inputText label="Bewertung" value="${feedbackBean.newFeedback.bewertung}"/>
+		<p:rating value="${feedbackBean.newFeedback.bewertung}"/><br />
 		<h:outputLabel>Inhalt:</h:outputLabel>
-		<p:inputTextarea label="Inhalt" rows="10" cols="50" value="${feedbackBean.newFeedback.inhalt}"/>
+		<p:inputTextarea label="Inhalt" rows="10" cols="50" value="${feedbackBean.newFeedback.inhalt}"/><br />
 		<h:outputLabel>Vertrag:</h:outputLabel>
-		<p:selectOneMenu  value="#{feedbackBean.newFeedback.vertrag}" converter="at.campus02.bp2.mbean.VertragListConverter">
+		<p:selectOneMenu  value="#{feedbackBean.newFeedback.vertrag}" converter="at.campus02.bp2.mbean.VertragListConverter"><br />
 			<f:selectItems value="#{vertragBean.vertragsListe}" var="vertrag" itemLabel="#{vertrag.vertragsnummer}" itemValue="#{vertrag}"/>
 		</p:selectOneMenu>
 		<p:commandButton value="Speichern" actionListener="${feedbackBean.save}" update="messages, feedbackListe" />

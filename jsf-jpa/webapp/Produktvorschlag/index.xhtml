@@ -44,14 +44,42 @@
 		var="produkt" rowKey="#{produkt.id}"
 		selection="#{produktvorschlagBean.selectedProdukt}" selectionMode="single"
 		editable="false">
-		<!-- <p:ajax event="rowEdit" listener="#{ansprechpartnerBean.onRowEdit}" />
-		<p:ajax event="rowEditCancel" listener="#{ansprechpartnerBean.onRowCancel}" /> -->
 
 		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Bezeichnung"></h:outputText>
 			</f:facet>
 			#{produkt.produktname}
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Technologie"></h:outputText>
+			</f:facet>
+			#{produkt.technologie}
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Leitungstyp"></h:outputText>
+			</f:facet>
+			#{produkt.leitungstyp}
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Bandbreite"></h:outputText>
+			</f:facet>
+			#{produkt.bandbreite}
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Anzahl Gespräche"></h:outputText>
+			</f:facet>
+			#{produkt.anzahlderGespraeche}
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Preis"></h:outputText>
+			</f:facet>
+			#{produkt.preis} €
 		</p:column>
 	</p:dataTable>
 

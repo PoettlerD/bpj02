@@ -47,7 +47,7 @@ public class Ansprechpartner implements Serializable {
 		this.id = id;
 	}
 	
-	@OneToOne(orphanRemoval = true) //Ein Ansprechpartner muss eine Person haben (sein), aber in der Personen-Klasse wird nicht auf die Ansprechpartner referenziert
+	@OneToOne(orphanRemoval = false) //Ein Ansprechpartner muss eine Person haben (sein), aber in der Personen-Klasse wird nicht auf die Ansprechpartner referenziert
 	@JoinColumn(name="PersonId", nullable=false)
 	private Person person;
 	

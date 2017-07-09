@@ -89,9 +89,7 @@ public class AnsprechpartnerBean {
     	
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
-		Person ansprechpartnerPerson = selectedAnsprechpartner.getPerson();
 		entityManager.remove(selectedAnsprechpartner);
-		entityManager.remove(ansprechpartnerPerson);
 		transaction.commit();
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Ansprechpartner wurde gelöscht"));
         selectedAnsprechpartner = null;

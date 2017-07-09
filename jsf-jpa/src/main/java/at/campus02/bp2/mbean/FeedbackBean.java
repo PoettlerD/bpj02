@@ -51,7 +51,7 @@ public class FeedbackBean {
 		transaction.begin();
 		entityManager.merge(newFeedback);
 		transaction.commit();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Das Vertrag vom" + newFeedback.getDatum() + " wurde gespeichert"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Das Feedback vom" + newFeedback.getDatum() + " wurde gespeichert"));
 	}
 	
 	public List<Feedback> getFeedbackListe() {

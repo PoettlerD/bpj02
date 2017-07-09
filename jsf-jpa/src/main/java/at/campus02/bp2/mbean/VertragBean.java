@@ -17,7 +17,6 @@ import javax.persistence.EntityTransaction;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 
-import at.campus02.bp2.model.Article;
 import at.campus02.bp2.model.Kunde;
 import at.campus02.bp2.model.Person;
 import at.campus02.bp2.model.Vertrag;
@@ -91,7 +90,7 @@ public void deleteVertrag() {
 		transaction.begin();
 		entityManager.remove(selectedVertrag);
 		transaction.commit();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person wurde gelöscht"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Vertrag wurde gelöscht"));
         selectedVertrag = null;
     }
     
@@ -101,7 +100,7 @@ public void deleteVertrag() {
 		transaction.begin();
 		entityManager.merge(selectedVertrag);
 		transaction.commit();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Die Person wurde gespeichert"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Der Vertrag wurde gespeichert"));
     }
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled");

@@ -6,15 +6,14 @@
 	version="2.1">
 	<persistence-unit name="jpa-example" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>at.campus02.bp2.model.Address</class>
 		<class>at.campus02.bp2.model.Ansprechpartner</class>
-		<class>at.campus02.bp2.model.Article</class>
-		<class>at.campus02.bp2.model.Customer</class>
 		<class>at.campus02.bp2.model.Kunde</class>
-		<class>at.campus02.bp2.model.Order</class>
-		<class>at.campus02.bp2.model.OrderItem</class>
 		<class>at.campus02.bp2.model.Person</class>
 		<class>at.campus02.bp2.model.Vertrag</class>
+		<class>at.campus02.bp2.model.Produkt</class>
+		<class>at.campus02.bp2.model.Kundensegment</class>
+		<class>at.campus02.bp2.model.Feedback</class>
+		<class>at.campus02.bp2.model.Standort</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />

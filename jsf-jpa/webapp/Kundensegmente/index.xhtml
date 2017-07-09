@@ -87,8 +87,8 @@
 	</p:dataTable>
 
 	<p:contextMenu for="kundensegmentListe">
-		<p:menuitem value="Delete" update="kundensegmentListe" icon="ui-icon-close"
-			actionListener="#{Kundensegment.deleteKundensegment}" />
+		<p:menuitem value="Delete" update="messages,kundensegmentListe" icon="ui-icon-close"
+			actionListener="#{kundensegmentBean.deleteKundensegment}" />
 	</p:contextMenu>
 
 </ui:composition>

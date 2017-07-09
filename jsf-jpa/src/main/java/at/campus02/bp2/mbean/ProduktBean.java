@@ -17,7 +17,6 @@ import javax.persistence.EntityTransaction;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 
-import at.campus02.bp2.model.Article;
 import at.campus02.bp2.model.Kunde;
 import at.campus02.bp2.model.Person;
 import at.campus02.bp2.model.Vertrag;
